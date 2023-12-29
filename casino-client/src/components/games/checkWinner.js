@@ -271,8 +271,8 @@ const pair = (card1,card2,flop1,flop2,flop3,turn,river) => {
       //console.log(elementCounts[card1.value])
      
      
-      if (elementCounts[card1.value]==2){return {points:10,value:card1.value}}
-      if (elementCounts[card2.value]==2){return {points:10,value:card2.value}}
+      if (elementCounts[card1.value]==2){return {points:10,value:card1.value, highCard:card2.value}}
+      if (elementCounts[card2.value]==2){return {points:10,value:card2.value, highCard:card1.value}}
       else return {points:0}
 
       temp.sort(function(a, b) {

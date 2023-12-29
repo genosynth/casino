@@ -29,8 +29,29 @@
 
   display: flex;
   justify-content: space-around;
+ 
 }
 
-.read-the-docs {
-  color: #888;
+.board-and-wholecards{
+  background-color: rgba(0, 80, 0, 0.575);
+  min-width: 1000px;
+  min-height: 500px;
+  border-radius: 3%;
+  padding-top: 2%;
+}
+
+.nav-bar{
+
+}
+
+.nav-bar-item {
+padding: 1%;
+border-radius: 5%;
+}
+
+.nav-bar-item:hover {
+  background-color: rgba(255, 255, 255, 0.432);
+  cursor: pointer;
+  font-size: large;
+  color: rgb(190, 205, 50);
 }
