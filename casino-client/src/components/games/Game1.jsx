@@ -47,31 +47,29 @@ function Game1({updateBalance}) {
       let filtered2 = filtered.filter(el => el != filtered[num]);
           
    
-      num = Math.floor(Math.random() * 50);     
-      setCard3(filtered2[num])
-      let filtered3 = filtered2.filter(el => el != filtered2[num]);
- 
-  
-  
-      num = Math.floor(Math.random() * 49);  
-      setCard4(filtered3[num])
-      let filtered4 = filtered3.filter(el => el != filtered3[num]);
+     
     
   
-      setFilteredDeck(filtered4)   
+      setFilteredDeck(filtered2)   
         
     
   }
 
 
-  const allIn = () => {
+  const allIn = async() => {
+    const delay = ms => new Promise(res => setTimeout(res, ms));
 
-    const updateBalanceFunction = () =>{
-      if (message=="Player Wins") return updateBalance(50)
-      if (message=="Opponent Wins") return updateBalance(-50)
-    }
+    let num = Math.floor(Math.random() * 50);     
+    setCard3(filteredDeck[num])
+    let filtered3 = filteredDeck.filter(el => el != filteredDeck[num]);
 
-    let num = Math.floor(Math.random() * 48); 
+
+
+    num = Math.floor(Math.random() * 49);  
+    setCard4(filtered3[num])
+    let filtered4 = filtered3.filter(el => el != filtered3[num]);
+   
+    num = Math.floor(Math.random() * 48); 
     setFlop1(filteredDeck[num])
     let filtered = filteredDeck.filter(el => el != filteredDeck[num])
 
@@ -81,41 +79,21 @@ function Game1({updateBalance}) {
 
     num = Math.floor(Math.random() * 46); 
     setFlop3(filtered2[num])
-    let filtered3 = filtered2.filter(el => el != filtered2[num])   
+     filtered3 = filtered2.filter(el => el != filtered2[num])
+
+    await delay(1500)
+
+    num = Math.floor(Math.random() * 45); 
+    setTurn(filtered3[num])
+     filtered4 = filtered3.filter(el => el != filtered3[num])
+
+    await delay(1500)
+
+    num = Math.floor(Math.random() * 44); 
+    setRiver(filtered4[num])
+    let filtered5 = filtered4.filter(el => el != filtered4[num])
+
     
-    const showTurnRiver = async () => {
-      const delay = ms => new Promise(res => setTimeout(res, ms));
-      await delay(1500);
-
-      num = Math.floor(Math.random() * 45); 
-      setTurn(filtered3[num])
-      let filtered4 = filtered3.filter(el => el != filtered3[num])
-      
-    
-      await delay(1500);
-      num = Math.floor(Math.random() * 44); 
-      setRiver(filtered4[num])
-      let filtered5 = filtered4.filter(el => el != filtered4[num])
-
-      setFilteredDeck(filtered5)
-
-      await delay(1500);
-      winner()
-
-      await delay(1500)
-      await delay(1500)
-      updateBalanceFunction()
- 
-    
-
-
-     
-    };
-
-    showTurnRiver()
-
-
-
   }
 
   const winner = () => {
@@ -132,21 +110,10 @@ function Game1({updateBalance}) {
     if (totalPlayerPoints>totalOpponentPoints) return setMessage("Player Wins")
     if (totalPlayerPoints<totalOpponentPoints) return setMessage("Opponent Wins")
 
-  
-    if (totalPlayerPoints == totalOpponentPoints && totalPlayerPoints>0){ //checks when both have 1 pair which is the highest pair
+    
+    if (totalPlayerPoints == totalOpponentPoints && totalPlayerPoints>0){ //checks when both have 1 pair  
       playerResult.pair.value > opponentResult.pair.value ? setMessage('Player Wins') : setMessage('Opponent Wins');
     }
-
-    if (totalPlayerPoints == totalOpponentPoints && playerResult.pair.value == opponentResult.pair.value && totalOpponentPoints==10){ //checks when both have the same pair  which is the highest high card
-      let board = [flop1,flop2,flop3,turn,river]
-
-      board.sort(function(a, b) {
-        return a - b;
-      })
-
-      playerResult.pair.highCard > opponentResult.pair.highCard ? 'Player Wins' : 'Opponent Wins';
-    }
-    
 
     if (totalPlayerPoints ==0 && totalOpponentPoints ==0) {//check high cards
       let x = [card1.value,card2.value]
@@ -174,6 +141,8 @@ function Game1({updateBalance}) {
       }
     }
 
+    if (message=="Player Wins"){()=>{console.log("fuckkkk")}}
+    if (message=="Opponent Wins"){()=>{updateBalance(-50)}}
   }
   
   let styleCard = {
@@ -184,14 +153,14 @@ function Game1({updateBalance}) {
 
  
 
- // <button onClick={winner}>Winner</button>
+ 
   return (
     <>
 
     
     <button onClick={deal}>Deal</button>
     <button onClick={allIn}>All In</button>
-   
+    <button onClick={winner}>Check Winner</button>
     <button onClick={()=>{
       if (message=="Player Wins") return updateBalance(50)
       if (message=="Opponent Wins") return updateBalance(-50)
@@ -199,70 +168,70 @@ function Game1({updateBalance}) {
 
 
     <button>Fold</button>
+
+      <div className="board-and-wholecards">
+    <div className="board">
+      <img
+            
+            src={flop1.image}
+            style={styleCard}
+        />
+      <img
+            
+            src={flop2.image}
+            style={styleCard}
+        />
+       <img
+            
+            src={flop3.image}
+            style={styleCard}
+        />
+
+         <img
+            
+            src={turn.image}
+            style={styleCard}
+        />
+
+        <img
+            
+            src={river.image}
+            style={styleCard}
+        />
+
+    </div>
+
+    <div className="whole-cards">
+    <div >
+      <img
+          
+          src={card1.image}
+          style={styleCard}
+      />
+      <img
+          
+          src={card2.image}
+          style={styleCard}
+      />
+    </div>
     
-    <div className="board-and-wholecards">
-      <div className="board">
-        <img
-              
-              src={flop1.image}
-              style={styleCard}
-          />
-        <img
-              
-              src={flop2.image}
-              style={styleCard}
-          />
-        <img
-              
-              src={flop3.image}
-              style={styleCard}
-          />
+    <div>
+      <img
+          
+          src={card3.image}
+          style={styleCard}
+      />
+      <img
+          
+          src={card4.image}
+          style={styleCard}
+      />
 
-          <img
-              
-              src={turn.image}
-              style={styleCard}
-          />
+    </div>
+ 
 
-          <img
-              
-              src={river.image}
-              style={styleCard}
-          />
-
-      </div>
-
-      <div className="whole-cards">
-      <div >
-        <img
-            
-            src={card1.image}
-            style={styleCard}
-        />
-        <img
-            
-            src={card2.image}
-            style={styleCard}
-        />
-      </div>
-      
-      <div>
-        <img
-            
-            src={card3.image}
-            style={styleCard}
-        />
-        <img
-            
-            src={card4.image}
-            style={styleCard}
-        />
-
-      </div>
-  
-
-      </div>
-    </div> 
+    </div>
+    </div>
     <span>{message}</span>
    
    </>

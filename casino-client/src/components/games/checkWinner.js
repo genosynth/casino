@@ -26,8 +26,9 @@ const checkWinner = (card1,card2,flop1,flop2,flop3,turn,river) => {
     straight:straight(card1,card2,flop1,flop2,flop3,turn,river),
     trips:trips(card1,card2,flop1,flop2,flop3,turn,river),
     twoPairs:twoPairs(card1,card2,flop1,flop2,flop3,turn,river),
-    pair:pair(card1,card2,flop1,flop2,flop3,turn,river),
-    board: board2Pair(flop1,flop2,flop3,turn,river)
+    pair:pair(card1,card2,flop1,flop2,flop3,turn,river)
+ 
+
 
   }
     
@@ -45,11 +46,7 @@ const poker = (card1,card2,flop1,flop2,flop3,turn,river) => {
         elementCounts[element] = (elementCounts[element] || 0) + 1;
       });
 
-      let temp = Object.values(elementCounts)
-      
-      //console.log(array)
-      //console.log(temp)
-      //console.log(elementCounts)
+      let temp = Object.values(elementCounts)      
       
       if (elementCounts.card1==4){return  {points:70,value:card1.value}}
       if (elementCounts.card2==4){return  {points:70,value:card2.value}}
@@ -268,7 +265,7 @@ const pair = (card1,card2,flop1,flop2,flop3,turn,river) => {
       
       let temp = Object.values(elementCounts)
 
-      //console.log(elementCounts[card1.value])
+      //console.log(elementCounts[temp])
      
      
       if (elementCounts[card1.value]==2){return {points:10,value:card1.value, highCard:card2.value}}
@@ -285,35 +282,12 @@ const pair = (card1,card2,flop1,flop2,flop3,turn,river) => {
         } else return false
 }
 
-const board2Pair = (flop1,flop2,flop3,turn,river) =>{
-  //2 cards with same value and another 2 cards with same value
-        
-    let array = [flop1.value,flop2.value,flop3.value,turn.value,river.value]    
-   
-
-    const elementCounts = {};
-
-    array.forEach(element => {
-        elementCounts[element] = (elementCounts[element] || 0) + 1;
-      });
-
-      
-      let temp = Object.keys(elementCounts)
-      console.log(temp)
-
-      if (temp.length<4){// there is a 2 pair on board
-        console.log("there is a 2 pair on board")
-        return {points:15, cardValue1:temp[0], cardValue2:temp[1]}
-      }
-
-
-      //if (elementCounts[card2.value]==2){return true}
-      else return {points:0}
-}
 
 const highCard = () => {
     //highest value of card
 }
+
+
 
 
 export default checkWinner

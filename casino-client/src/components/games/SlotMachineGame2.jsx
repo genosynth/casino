@@ -1,7 +1,7 @@
 import cards from "../../cards/Cards"
 import backCard from "../../images/back_card.png"
 import { useEffect, useState } from "react"
-function SlotMachineGame2({updateBalance,balance}) {
+function SlotMachineGame2({updateBalance,balance,selection}) {
 
   const [row1, setRow1] = useState([cards.aceSpades.image,cards.aceDiamonds.image,cards.aceClubs.image,cards.aceHearts.image])
   const [row2, setRow2] = useState([cards.aceDiamonds.image,cards.aceClubs.image,cards.aceHearts.image,cards.aceSpades.image])
@@ -675,6 +675,9 @@ const randomize = () =>{
     setColors()
   },[counter])
 
+  useEffect(()=>{
+    updateBalance(counter)
+  },[selection])
 
  
   return (
@@ -786,7 +789,8 @@ const randomize = () =>{
               
       </div>
 
-      <button onClick={spinAll}>SPIN</button>     
+      <button onClick={()=>{spinAll(), updateBalance(counter)}}>Spin</button>     
+      
      
     </>
   )

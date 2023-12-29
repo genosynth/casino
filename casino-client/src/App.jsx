@@ -18,7 +18,7 @@ const Selections = () => {
     return <Game1 updateBalance={updateBalance}></Game1>
   } 
   if (selection=="Slot Machine") {
-    return <SlotMachineGame2 updateBalance={updateBalance} balance={balance}></SlotMachineGame2>
+    return <SlotMachineGame2 updateBalance={updateBalance} balance={balance} selection={selection}></SlotMachineGame2>
   } 
 };
 
