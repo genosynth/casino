@@ -54,4 +54,26 @@ border-radius: 5%;
   cursor: pointer;
   font-size: large;
   color: rgb(190, 205, 50);
+ 
+}
+
+.slot {
+  background-image: url("./images/slotphoto.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat, repeat;
+  width:1200px;
+  border: solid thin yellow;
+  border-radius: 2%;
+ 
+}
+
+.black-jack {
+
+  background-color: rgba(0, 80, 0, 0.575);
+  min-width: 1000px;
+  min-height: 500px;
+  border-radius: 3%;
+  padding-top: 2%;
+  display: flex;
+  flex-direction: column;
 }

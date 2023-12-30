@@ -61,37 +61,37 @@ function Game1({updateBalance}) {
 
     let num = Math.floor(Math.random() * 50);     
     setCard3(filteredDeck[num])
-    let filtered3 = filteredDeck.filter(el => el != filteredDeck[num]);
+    let filtered = filteredDeck.filter(el => el != filteredDeck[num]);
 
 
 
     num = Math.floor(Math.random() * 49);  
-    setCard4(filtered3[num])
-    let filtered4 = filtered3.filter(el => el != filtered3[num]);
+    setCard4(filtered[num])
+    let filtered2 = filtered.filter(el => el != filtered[num]);
    
     num = Math.floor(Math.random() * 48); 
     setFlop1(filteredDeck[num])
-    let filtered = filteredDeck.filter(el => el != filteredDeck[num])
+    let filtered3 = filtered2.filter(el => el != filtered2[num])
 
     num = Math.floor(Math.random() * 47); 
     setFlop2(filtered[num])
-    let filtered2 = filtered.filter(el => el != filtered[num])
+    let filtered4 = filtered3.filter(el => el != filtered3[num])
 
     num = Math.floor(Math.random() * 46); 
     setFlop3(filtered2[num])
-     filtered3 = filtered2.filter(el => el != filtered2[num])
+    let filtered5 = filtered4.filter(el => el != filtered4[num])
 
-    await delay(1500)
+    await delay(1000)
 
     num = Math.floor(Math.random() * 45); 
-    setTurn(filtered3[num])
-     filtered4 = filtered3.filter(el => el != filtered3[num])
+    setTurn(filtered5[num])
+    let filtered6 = filtered5.filter(el => el != filtered5[num])
 
-    await delay(1500)
+    await delay(1000)
 
     num = Math.floor(Math.random() * 44); 
     setRiver(filtered4[num])
-    let filtered5 = filtered4.filter(el => el != filtered4[num])
+    let filtered7 = filtered6.filter(el => el != filtered6[num])
 
     
   }
