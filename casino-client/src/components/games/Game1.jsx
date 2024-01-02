@@ -96,6 +96,10 @@ function Game1({updateBalance}) {
     
   }
 
+  const fold = () => {
+    updateBalance(-5)
+  }
+
   const winner = () => {
     let playerResult = (checkWinner(card1,card2,flop1,flop2,flop3,turn,river))
     let opponentResult = (checkWinner(card3,card4,flop1,flop2,flop3,turn,river))
@@ -167,7 +171,7 @@ function Game1({updateBalance}) {
       }}>Update Balance</button>
 
 
-    <button>Fold</button>
+    <button onClick={fold}>Fold</button>
 
       <div className="board-and-wholecards">
     <div className="board">
